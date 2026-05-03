@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "Home",
+    "tours": "Tours",
+    "trips": "Schedule",
+    "private": "Private Group",
+    "carRental": "Car + Driver",
+    "about": "About",
+    "contact": "Contact",
+    "bookNow": "Book Now"
+  },
+  "common": {
+    "perPerson": "/person",
+    "currency": "THB",
+    "viewAll": "View all",
+    "loading": "Loading...",
+    "back": "Back",
+    "next": "Next",
+    "confirm": "Confirm"
+  },
+  "home": {
+    "heroTitle": "Travel light.\nLive bright.",
+    "heroSub": "Curated tours across Asia. Easy booking — depart with as few as 4 travelers.",
+    "heroCta": "See all programs",
+    "categoriesTitle": "Our Services",
+    "featuredTitle": "Featured Tours"
+  },
+  "booking": {
+    "step1": "Selection",
+    "step2": "Travelers",
+    "step3": "Add-on",
+    "step4": "Contact",
+    "step5": "Review",
+    "step6": "Payment",
+    "joinGroup": "Join Group",
+    "private": "Private",
+    "addCar": "Add a private car + driver?",
+    "skip": "Skip",
+    "totalPrice": "Total",
+    "agreeTerms": "I agree to the terms and conditions"
+  },
+  "tour": {
+    "duration": "{days} days {nights} nights",
+    "registered": "{count}/{max} travelers",
+    "highlights": "Highlights",
+    "itinerary": "Itinerary",
+    "includes": "What's included",
+    "excludes": "Not included"
+  }
+}

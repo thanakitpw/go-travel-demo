@@ -1,0 +1,50 @@
+{
+  "nav": {
+    "home": "หน้าแรก",
+    "tours": "โปรแกรมทัวร์",
+    "trips": "ตารางทริป",
+    "private": "ไพรเวทกรุ๊ป",
+    "carRental": "เช่ารถ + คนขับ",
+    "about": "เกี่ยวกับเรา",
+    "contact": "ติดต่อเรา",
+    "bookNow": "จองทัวร์"
+  },
+  "common": {
+    "perPerson": "/ท่าน",
+    "currency": "฿",
+    "viewAll": "ดูทั้งหมด",
+    "loading": "กำลังโหลด...",
+    "back": "ย้อนกลับ",
+    "next": "ถัดไป",
+    "confirm": "ยืนยัน"
+  },
+  "home": {
+    "heroTitle": "ออกเดินทาง.\nเก็บความทรงจำ.",
+    "heroSub": "โปรแกรมทัวร์คุณภาพ จัดเองทุกรอบ จองง่าย เริ่มต้น 4 ท่านก็ออกเดินทางได้",
+    "heroCta": "ดูโปรแกรมทั้งหมด",
+    "categoriesTitle": "บริการของเรา",
+    "featuredTitle": "โปรแกรมแนะนำ"
+  },
+  "booking": {
+    "step1": "เลือกรอบ",
+    "step2": "ผู้เดินทาง",
+    "step3": "เพิ่มเติม",
+    "step4": "ติดต่อ",
+    "step5": "ตรวจสอบ",
+    "step6": "ชำระเงิน",
+    "joinGroup": "Join Group",
+    "private": "Private",
+    "addCar": "เพิ่มรถส่วนตัว + คนขับ?",
+    "skip": "ข้าม",
+    "totalPrice": "ยอดรวม",
+    "agreeTerms": "ฉันยอมรับข้อกำหนดและเงื่อนไข"
+  },
+  "tour": {
+    "duration": "{days} วัน {nights} คืน",
+    "registered": "{count}/{max} ท่าน",
+    "highlights": "ไฮไลท์",
+    "itinerary": "รายละเอียดการเดินทาง",
+    "includes": "รวมในแพ็กเกจ",
+    "excludes": "ไม่รวม"
+  }
+}
