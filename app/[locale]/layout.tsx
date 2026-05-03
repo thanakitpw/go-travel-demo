@@ -6,6 +6,7 @@ import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n/request';
 import { Nav } from '@/components/layout/nav';
 import { Footer } from '@/components/layout/footer';
+import { StickyLine } from '@/components/layout/sticky-line';
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -44,6 +45,7 @@ export default async function LocaleLayout({
           <Nav />
           <main className="mx-auto max-w-7xl px-8">{children}</main>
           <Footer />
+          <StickyLine />
         </NextIntlClientProvider>
       </body>
     </html>
