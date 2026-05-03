@@ -80,14 +80,18 @@ Expected: commit succeeds.
 - [ ] **Step 1: Install runtime libraries**
 
 ```bash
-npm install next-intl@^3 swr@^2 react-hook-form@^7 zod@^3 @hookform/resolvers@^3 lucide-react@latest clsx tailwind-merge class-variance-authority
+npm install next-intl@^4 swr@^2 react-hook-form@^7 zod@^3 @hookform/resolvers@^3 lucide-react@latest clsx tailwind-merge class-variance-authority
 ```
+
+> **Note:** `next-intl@^4` is required for Next.js 16 compatibility. v3 only supports Next 13–15.
 
 - [ ] **Step 2: Install dev dependencies (testing + lint)**
 
 ```bash
-npm install -D vitest@^2 @vitest/ui jsdom @testing-library/react @testing-library/jest-dom @types/node
+npm install -D vitest@^4 @vitest/ui@^4 jsdom @testing-library/react @testing-library/jest-dom @types/node
 ```
+
+> **Note:** Pin vitest + @vitest/ui to the same major (^4 — current latest). They must match.
 
 - [ ] **Step 3: Add npm scripts**
 
@@ -98,7 +102,7 @@ Edit `package.json` `"scripts"` block to read:
   "dev": "next dev --turbopack",
   "build": "next build",
   "start": "next start",
-  "test": "vitest run",
+  "test": "vitest run --passWithNoTests",
   "test:watch": "vitest",
   "typecheck": "tsc --noEmit"
 }
@@ -153,73 +157,59 @@ git commit -m "chore: add runtime + testing dependencies"
 ## Task 3: Configure Tailwind Theme + Fonts
 
 **Files:**
-- Modify: `tailwind.config.ts`
+- Modify: `app/globals.css` (Tailwind v4 `@theme` block — replaces `tailwind.config.ts`, which v4 doesn't use)
 - Modify: `app/layout.tsx`
-- Modify: `app/globals.css`
+- Modify: `next.config.ts`
 
-- [ ] **Step 1: Replace tailwind.config.ts with theme**
+> **Tailwind v4 note:** Unlike v3, Tailwind v4 has no `tailwind.config.ts`. Theme tokens live in CSS via `@theme`. CSS variables like `--color-primary` automatically generate utilities like `bg-primary`, `text-primary`, etc. Do NOT create a `tailwind.config.ts`.
 
-```ts
-import type { Config } from 'tailwindcss';
+- [ ] **Step 1: Replace `app/globals.css` with the theme**
 
-export default {
-  content: ['./app/**/*.{ts,tsx}', './components/**/*.{ts,tsx}'],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['var(--font-inter)', 'var(--font-noto-thai)', 'system-ui', 'sans-serif'],
-      },
-      colors: {
-        primary: {
-          DEFAULT: '#2563eb',
-          dark: '#1e40af',
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-        },
-        pastel: {
-          blue: '#dbeafe',
-          'blue-ink': '#2563eb',
-          green: '#dcfce7',
-          'green-ink': '#16a34a',
-          amber: '#fef3c7',
-          'amber-ink': '#d97706',
-          pink: '#fce7f3',
-          'pink-ink': '#db2777',
-        },
-        ink: {
-          DEFAULT: '#0f172a',
-          muted: '#64748b',
-        },
-        line: '#e2e8f0',
-      },
-      borderRadius: {
-        xl: '0.875rem',
-        '2xl': '1rem',
-      },
-    },
-  },
-  plugins: [],
-} satisfies Config;
-```
-
-- [ ] **Step 2: Replace app/globals.css**
+Replace the entire contents of `app/globals.css`:
 
 ```css
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-inter), var(--font-noto-thai), system-ui, sans-serif;
+
+  --color-primary: #2563eb;
+  --color-primary-dark: #1e40af;
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+
+  --color-pastel-blue: #dbeafe;
+  --color-pastel-blue-ink: #2563eb;
+  --color-pastel-green: #dcfce7;
+  --color-pastel-green-ink: #16a34a;
+  --color-pastel-amber: #fef3c7;
+  --color-pastel-amber-ink: #d97706;
+  --color-pastel-pink: #fce7f3;
+  --color-pastel-pink-ink: #db2777;
+
+  --color-ink: #0f172a;
+  --color-ink-muted: #64748b;
+  --color-line: #e2e8f0;
+
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1rem;
+}
 
 @layer base {
   html {
-    font-family: var(--font-inter), var(--font-noto-thai), system-ui, sans-serif;
+    font-family: var(--font-sans);
   }
   body {
     background: #f8fafc;
-    color: #0f172a;
+    color: var(--color-ink);
   }
 }
 ```
 
-- [ ] **Step 3: Replace app/layout.tsx with font loaders**
+> **Generated utilities to verify:** `bg-primary`, `bg-primary-50`, `text-primary`, `text-primary-dark`, `bg-pastel-blue`, `text-pastel-blue-ink`, `text-ink`, `text-ink-muted`, `border-line`, `rounded-xl`, `rounded-2xl`. These will be referenced throughout Tasks 16–25.
+
+- [ ] **Step 2: Replace app/layout.tsx with font loaders**
 
 ```tsx
 import type { Metadata } from 'next';
@@ -253,7 +243,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-- [ ] **Step 4: Configure next.config.ts for image formats**
+- [ ] **Step 3: Configure next.config.ts for image formats**
 
 Replace `next.config.ts`:
 
@@ -269,7 +259,7 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 ```
 
-- [ ] **Step 5: Verify build**
+- [ ] **Step 4: Verify build**
 
 ```bash
 npm run build
@@ -277,11 +267,11 @@ npm run build
 
 Expected: build succeeds. Inter + Noto Sans Thai are downloaded by Next.js font system.
 
-- [ ] **Step 6: Commit**
+- [ ] **Step 5: Commit**
 
 ```bash
-git add tailwind.config.ts app/globals.css app/layout.tsx next.config.ts
-git commit -m "feat: configure Tailwind theme + Inter/Noto Sans Thai fonts"
+git add app/globals.css app/layout.tsx next.config.ts
+git commit -m "feat: configure Tailwind v4 theme + Inter/Noto Sans Thai fonts"
 ```
 
 ---
