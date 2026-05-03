@@ -61,4 +61,10 @@ class Store {
 // Replace this in-memory implementation with a Prisma-backed store.
 // Keep the same public API (getCounter, createBooking, getBooking, createCarRental, getCarRental).
 // All callers (API routes, components) depend ONLY on this surface.
-export const store = new Store();
+//
+// Use globalThis to ensure a single shared instance across Next.js server
+// bundles (route handlers and server components are bundled separately and
+// would otherwise each get their own Store instance, defeating the singleton).
+const globalForStore = globalThis as unknown as { __goTravelStore?: Store };
+export const store = globalForStore.__goTravelStore ?? new Store();
+if (!globalForStore.__goTravelStore) globalForStore.__goTravelStore = store;
