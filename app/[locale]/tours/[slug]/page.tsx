@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Check, X, MapPin, Clock } from 'lucide-react';
+import type { Metadata } from 'next';
 import { getTour } from '@/data/tours';
 import { getTripsForTour } from '@/data/trips';
 import { pickLocale, pickLocaleArray, formatPrice } from '@/lib/i18n';
@@ -10,6 +11,24 @@ import type { Tour, TripInstance } from '@/types';
 import { TourItinerary } from '@/components/tour/tour-itinerary';
 import { TourPricingTiers } from '@/components/tour/tour-pricing-tiers';
 import { TourTripsList } from '@/components/tour/tour-trips-list';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const tour = getTour(slug);
+  if (!tour) return { title: 'Not found' };
+  const name = locale === 'en' ? tour.name.en : tour.name.th;
+  const summary = locale === 'en' ? tour.summary.en : tour.summary.th;
+  return {
+    title: `${name} | Go Travel`,
+    description: summary,
+    openGraph: { title: name, description: summary, images: [tour.coverImage] },
+    twitter: { card: 'summary_large_image', title: name, description: summary, images: [tour.coverImage] },
+  };
+}
 
 export default async function TourDetailPage({
   params,
@@ -113,6 +132,23 @@ function TourDetail({ tour, trips }: { tour: Tour; trips: TripInstance[] }) {
           <TourPricingTiers tour={tour} />
         </aside>
       </div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'TouristTrip',
+            name: pickLocale(tour.name, locale),
+            description: pickLocale(tour.summary, locale),
+            image: tour.coverImage,
+            offers: {
+              '@type': 'Offer',
+              price: tour.groupPricing.perPerson,
+              priceCurrency: 'THB',
+            },
+          }),
+        }}
+      />
     </article>
   );
 }

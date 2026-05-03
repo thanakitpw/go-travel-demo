@@ -17,8 +17,9 @@ const notoThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: 'Go Travel — Tours, Trips, Private Groups',
+  title: { default: 'Go Travel — Tours, Trips, Private Groups', template: '%s | Go Travel' },
   description: 'Curated tours across Asia. Book online with ease.',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://go-travel-demo.vercel.app'),
 };
 
 export function generateStaticParams() {
