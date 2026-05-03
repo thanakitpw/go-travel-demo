@@ -46,5 +46,74 @@
     "itinerary": "Itinerary",
     "includes": "What's included",
     "excludes": "Not included"
+  },
+  "home_hero": {
+    "searchPlaceholder": "Search destinations or tours...",
+    "searchDestLabel": "Destination",
+    "searchDateLabel": "Month",
+    "searchPaxLabel": "Travelers",
+    "searchButton": "Search Tours",
+    "statHappy": "Happy travelers",
+    "statRating": "Avg rating",
+    "statDest": "Destinations",
+    "statSafety": "Safety guaranteed"
+  },
+  "trust_strip": {
+    "licensed": "Licensed agency",
+    "travelers": "5,000+ travelers",
+    "rating": "4.9 avg rating",
+    "safety": "100% safety"
+  },
+  "by_country": {
+    "title": "Browse by Destination",
+    "subtitle": "8 countries across Asia, all programs run by us"
+  },
+  "schedule_preview": {
+    "title": "Upcoming Departures",
+    "subtitle": "Next 6 trips currently open for booking",
+    "viewAll": "View full schedule"
+  },
+  "why": {
+    "title": "Why Choose Go Travel",
+    "subtitle": "We curate every tour and own every step",
+    "p1Title": "Licensed Agency",
+    "p1Desc": "Tour license #11/06310, registered capital THB 15.5M",
+    "p2Title": "Travel Insurance",
+    "p2Desc": "Every trip covered up to THB 2,000,000 per traveler",
+    "p3Title": "Expert Team",
+    "p3Desc": "Thai-speaking guides with 10+ years on every route",
+    "p4Title": "Fair Pricing",
+    "p4Desc": "No hidden fees — what you see is what you pay"
+  },
+  "testimonials": {
+    "title": "Voices from Our Travelers",
+    "subtitle": "5,000+ satisfied customers and counting"
+  },
+  "gallery": {
+    "title": "Past Tours",
+    "subtitle": "Real photos from real travelers"
+  },
+  "articles": {
+    "title": "Articles & Travel Tips",
+    "subtitle": "Insider tips and destination guides",
+    "viewAll": "View all articles",
+    "readMore": "Read more",
+    "minRead": "min read"
+  },
+  "newsletter": {
+    "title": "Ready for your next adventure?",
+    "subtitle": "Add us on LINE for exclusive offers",
+    "lineButton": "Add LINE Friend",
+    "callButton": "Call us"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Common questions before booking"
+  },
+  "final_cta": {
+    "title": "Ready to book your trip?",
+    "subtitle": "Our team is here 24/7 to help",
+    "browse": "Browse all programs",
+    "contact": "Contact the team"
   }
 }
