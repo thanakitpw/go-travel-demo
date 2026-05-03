@@ -4,6 +4,8 @@ import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import { locales, type Locale } from '@/i18n/request';
+import { Nav } from '@/components/layout/nav';
+import { Footer } from '@/components/layout/footer';
 import '../globals.css';
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' });
@@ -15,8 +17,8 @@ const notoThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: 'Go Travel',
-  description: 'Tour booking made simple.',
+  title: 'Go Travel — Tours, Trips, Private Groups',
+  description: 'Curated tours across Asia. Book online with ease.',
 };
 
 export function generateStaticParams() {
@@ -38,7 +40,9 @@ export default async function LocaleLayout({
     <html lang={locale} className={`${inter.variable} ${notoThai.variable}`}>
       <body>
         <NextIntlClientProvider messages={messages} locale={locale}>
-          {children}
+          <Nav />
+          <main className="mx-auto max-w-7xl px-8">{children}</main>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>
